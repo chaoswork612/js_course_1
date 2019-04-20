@@ -1,19 +1,17 @@
 function verifyPassword(password) {
-    switch(
-        verifyLength(password) && 
-        verifyStartsWtihXAndOrEndsWithZ(password) && (
-            verifySpecailCharacters(password, "&") ||
-            verifySpecailCharacters(password, "$") ||
-            verifySpecailCharacters(password, "%") ||
-            verifySpecailCharacters(password, "*")
-        )
+    if (
+            verifyLength(password) && 
+            verifyStartsWtihXAndOrEndsWithZ(password) && (
+                verifySpecailCharacters(password, "&") ||
+                verifySpecailCharacters(password, "$") ||
+                verifySpecailCharacters(password, "%") ||
+                verifySpecailCharacters(password, "*")
+            )
     ) {
-        case true:
-            return "Password is correct";
-        case false:
-            return "Password is incorrect";
+        return "Password is correct";
+    } else {
+        return "Password is incorrect";
     }
-    
 }
 
 function verifyLength(password) {
@@ -25,7 +23,7 @@ function verifyLength(password) {
 }
 
 function verifySpecailCharacters(password, char) {
-    if (!!~password.indexOf(char)){
+    if (!!~password.indexOf(char)) {
         return true;
     } else {
         return false;
