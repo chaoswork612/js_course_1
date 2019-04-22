@@ -11,7 +11,11 @@ function multipliction(a, b) {
 }
 
 function division(a, b) {
-    return a / b;
+    if (b != 0) {
+        return a / b;
+    } else {
+        return "Division by zero";
+    }
 }
 
 function mathOperation(arg1, arg2, operation) {
