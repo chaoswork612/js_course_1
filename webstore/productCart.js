@@ -2,22 +2,29 @@ let productCart	= {
     productsList: [],
     countTotalPrice() {
         let totalPrice = 0;
-        for (let i = 0;  i < this.productsList.length; i++) {
-            totalPrice += this.productsList[i].price * this.productsList[i].count;
-        }
+        this.productsList.forEach(price => {
+            totalPrice += price
+        });
         return totalPrice;
     },
-    countTotalNumber() {
-        let totalCount = 0;
-        for (let i = 0;  i < this.productsList.length; i++) {
-            totalCount += this.productsList[i].count;
+    countTotalNumber(count) {
+        let totalNumber = 0;
+        totalNumber += count;
+        return totalNumber;
+    },
+    putProduct(price) {
+        let count = 0;
+        count +=
+        this.productsList.push(price);
+        this.productCartText(price, count);
+    },
+    productCartText(price, count) {
+        if(this.productsList.length) {
+            document.getElementById('productCartText').innerText =
+                `В корзине: ${this.countTotalNumber(count)} товаров на сумму ${this.countTotalPrice()} рублей`;
         }
-        return totalCount;
-    },
-    putProduct(product) {
-        this.productsList.push(product);
-    },
-    generateMarkedListOfProducts(index) {
+    }
+    /*generateMarkedListOfProducts(index) {
         let currentProduct = this.productsList[index];
         return `<li>${index+1}. Товар ${currentProduct.name} - ${currentProduct.price} - ${currentProduct.count} шт.</li>`;
     },
@@ -35,9 +42,8 @@ let productCart	= {
         productCartDiv.innerHTML = productCartStateString;
         let body = document.body;
         body.appendChild(productCartDiv);
-    }
-}
-
+    }*/
+};
 let products = [
     {name: 'device_1', price: 60},
     {name: 'device_2', price: 45},
@@ -45,7 +51,7 @@ let products = [
     {name: 'device_4', price: 70}
 ];
 
-for(let i = 0; i < products.length; i++) {
+/*for(let i = 0; i < products.length; i++) {
 
     products[i].count = 0;
     if(i % 2 === 0) {
@@ -59,3 +65,20 @@ for(let i = 0; i < products.length; i++) {
 productCart.printTotalValues();
 
 console.log(productCart.countTotalPrice(), productCart.countTotalNumber());
+*/
+let productList = {
+    createProductCards() {
+        let productCartContainer = document.getElementById("main");
+        for (let i = 0; i < products.length; i++) {
+            let productName = products[i].name;
+            let productPrice = products[i].price;
+            productCartContainer.innerHTML += `<div class="product-card">
+            <h2>${productName}</h2>
+            <p>Цена ${productPrice}</p>
+            <button onclick="productCart.putProduct(${productPrice})" id="button">Купить</button>
+            </div>`;
+        }
+        productCartContainer.innerHTML += `<div id="productCartText" class="cart-block">Корзина пуста</div>`;
+    }
+};
+productList.createProductCards();
