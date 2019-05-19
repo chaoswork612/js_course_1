@@ -16,9 +16,9 @@ let productCart	= {
         let count = 0;
         count +=
         this.productsList.push(price);
-        this.productCartText(price, count);
+        this.productCartText(count);
     },
-    productCartText(price, count) {
+    productCartText(count) {
         if(this.productsList.length) {
             document.getElementById('productCartText').innerText =
                 `В корзине: ${this.countTotalNumber(count)} товаров на сумму ${this.countTotalPrice()} рублей`;
